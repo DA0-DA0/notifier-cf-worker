@@ -1,0 +1,13 @@
+name = "notifier"
+main = "src/index.ts"
+compatibility_date = "2023-06-21"
+node_compat = true
+
+services = [
+  { binding = "kvpk", service = "kvpk" },
+  { binding = "inbox", service = "inbox" }
+]
+
+# Secrets:
+# - NOTIFY_SECRET
+# - INBOX_SECRET
