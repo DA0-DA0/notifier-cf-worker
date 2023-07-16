@@ -31,20 +31,13 @@ export const notify = async (
     case EventType.ProposalCreated:
       const { data } = body
       if (
-        objectMatchesStructure<EventTypeProposalCreatedData>(
-          data,
-          {
-            chainId: {},
-            dao: {},
-            daoName: {},
-            imageUrl: {},
-            proposalId: {},
-            proposalTitle: {},
-          },
-          {
-            ignoreNullUndefined: true,
-          }
-        )
+        objectMatchesStructure<EventTypeProposalCreatedData>(data, {
+          chainId: {},
+          dao: {},
+          daoName: {},
+          proposalId: {},
+          proposalTitle: {},
+        })
       ) {
         // Get all public keys following the DAO.
         const publicKeys = (
