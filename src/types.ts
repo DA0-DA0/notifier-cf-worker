@@ -15,15 +15,13 @@ export type NotifyBody = {
 
 export enum EventType {
   ProposalCreated = 'proposal_created',
+  ProposalExecuted = 'proposal_executed',
+  ProposalClosed = 'proposal_closed',
 }
 
 export type EventTypeProposalCreatedData = {
   chainId: string
   dao: string
-  daoName: string
-  imageUrl: string | undefined
-  proposalId: string
-  proposalTitle: string
 }
 
 export type KvpkReverseResponse = {
