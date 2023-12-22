@@ -17,11 +17,14 @@ export enum EventType {
   ProposalCreated = 'proposal_created',
   ProposalExecuted = 'proposal_executed',
   ProposalClosed = 'proposal_closed',
+  PendingProposalCreated = 'pending_proposal_created',
 }
 
-export type EventTypeProposalCreatedData = {
+// Common data shared across all proposal event types.
+export type EventTypeProposalData = {
   chainId: string
   dao: string
+  proposalId: string
 }
 
 export type KvpkReverseResponse = {
@@ -37,7 +40,4 @@ export type AddItemBody<Data = Record<string, unknown>> = {
   data: Data
 }
 
-export type InboxItemTypeProposalCreatedData = Omit<
-  EventTypeProposalCreatedData,
-  'chainId'
->
+export type InboxItemTypeProposalData = Omit<EventTypeProposalData, 'chainId'>

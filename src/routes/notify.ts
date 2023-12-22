@@ -2,8 +2,8 @@ import {
   AddItemBody,
   Env,
   EventType,
-  EventTypeProposalCreatedData as EventTypeProposalData,
-  InboxItemTypeProposalCreatedData,
+  EventTypeProposalData as EventTypeProposalData,
+  InboxItemTypeProposalData,
   KvpkReverseResponse,
   NotifyBody,
 } from '../types'
@@ -31,11 +31,13 @@ export const notify = async (
     case EventType.ProposalCreated:
     case EventType.ProposalExecuted:
     case EventType.ProposalClosed:
+    case EventType.PendingProposalCreated:
       const { data } = body
       if (
         objectMatchesStructure<EventTypeProposalData>(data, {
           chainId: {},
           dao: {},
+          proposalId: {},
         })
       ) {
         // Get all public keys following the DAO.
@@ -52,7 +54,7 @@ export const notify = async (
         // Send a notification to each public key.
         await Promise.all(
           publicKeys.map((publicKey) => {
-            const inboxData: AddItemBody<InboxItemTypeProposalCreatedData> = {
+            const inboxData: AddItemBody<InboxItemTypeProposalData> = {
               chainId: data.chainId,
               type: body.type,
               data,
