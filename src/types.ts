@@ -18,6 +18,7 @@ export enum EventType {
   ProposalExecuted = 'proposal_executed',
   ProposalClosed = 'proposal_closed',
   PendingProposalCreated = 'pending_proposal_created',
+  PendingProposalRejected = 'pending_proposal_rejected',
 }
 
 // Common data shared across all proposal event types.

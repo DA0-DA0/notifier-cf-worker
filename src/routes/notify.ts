@@ -32,6 +32,7 @@ export const notify = async (
     case EventType.ProposalExecuted:
     case EventType.ProposalClosed:
     case EventType.PendingProposalCreated:
+    case EventType.PendingProposalRejected:
       const { data } = body
       if (
         objectMatchesStructure<EventTypeProposalData>(data, {
